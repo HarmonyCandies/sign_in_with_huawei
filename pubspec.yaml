@@ -1,7 +1,8 @@
 name: sign_in_with_huawei
 description: The Flutter plugin for Signing In with HUAWEI ID (on HarmonyOS)
 version: 0.0.1
-homepage:
+homepage: https://github.com/harmonycandies/sign_in_with_huawei
+repository: https://github.com/harmonycandies/sign_in_with_huawei
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
