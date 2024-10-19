@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "sign_in_with_huawei",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
