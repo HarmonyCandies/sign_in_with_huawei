@@ -11,11 +11,11 @@ abstract class HuaweiAuthResponse {
 }
 
 class HuaweiAuthByIdResponse extends HuaweiAuthResponse {
-  final String state;
-  final String authCode;
-  final String idToken;
-  final String openID;
-  final String unionID;
+  final String? state;
+  final String? authCode;
+  final String? idToken;
+  final String? openID;
+  final String? unionID;
 
   HuaweiAuthByIdResponse.fromMap(Map response)
       : state = response["state"],
