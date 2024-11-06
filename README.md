@@ -12,7 +12,7 @@ flutter pub add sign_in_with_huawei
 
 ```yaml
 dependencies:
-    sign_in_with_huawei: ^0.0.2
+    sign_in_with_huawei: ^0.0.3
 ```
 
 ## 前提条件
