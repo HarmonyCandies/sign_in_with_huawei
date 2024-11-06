@@ -11,6 +11,7 @@ import {
 import { authentication } from '@kit.AccountKit';
 import { util } from '@kit.ArkTS';
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const MESSAGES_CHANNEL = "com.fluttercandies/sign_in_with_huawei";
 
@@ -63,16 +64,24 @@ export default class SignInWithHuaweiPlugin implements FlutterPlugin, MethodCall
     try {
       const request = this.composeIdRequest(call)
       const controller = new authentication.AuthenticationController(this.context!);
-      const response: authentication.LoginWithHuaweiIDResponse = await controller.executeRequest(request);
-      result.success(this.responseToMap({
-        data: {
-          "state": response.state,
-          "authCode": response.data?.authorizationCode,
-          "idToken": response.data?.idToken,
-          "openID": response.data?.openID,
-          "unionID": response.data?.unionID
-        }
-      }))
+      controller.executeRequest(request)
+        .then((response: authentication.LoginWithHuaweiIDResponse) => {
+          result.success(this.responseToMap({
+            data: {
+              "state": response.state,
+              "authCode": response.data?.authorizationCode,
+              "idToken": response.data?.idToken,
+              "openID": response.data?.openID,
+              "unionID": response.data?.unionID
+            }
+          }))
+        })
+        .catch((e: BusinessError) => {
+          result.success(this.responseToMap({
+            errorCode: e.code,
+            errorMsg: e.message
+          }))
+        })
     } catch (e) {
       result.success(this.responseToMap({
         errorCode: e.code,
